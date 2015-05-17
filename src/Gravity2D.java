@@ -1,3 +1,5 @@
+import java.lang.reflect.InvocationTargetException;
+
 
 
 /**
@@ -10,7 +12,7 @@
  */
 
 public class Gravity2D {
-   public static void main(String[] args) {
+   public static void main(String[] args) throws InvocationTargetException, InterruptedException {
       vg.gravity.gui.common.OverallStartup.main(
          new String[] { "2D" }
       );
