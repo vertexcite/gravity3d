@@ -28,10 +28,9 @@ public class OverallStartup {
       GravityController gController = gravityModelStartup.getGravityController();
 
       final boolean spaceIs3d = (args.length > 0 && args[0].equals("3D"));
-      SwingUtilities.invokeAndWait(new Runnable() {
-  	    public void run() {
+      SwingUtilities.invokeAndWait(() ->
+  	    {
 	      if (spaceIs3d) {
-	
 	         Gravity3DStarter gravity3DStarter = new Gravity3DStarter();
 	         gravity3DStarter.startup(gController);
 	         GravityGui gravityGui = gravity3DStarter.getGravityGui();
@@ -44,7 +43,7 @@ public class OverallStartup {
 	         gController.setGravityGui(gravityGui);
           }
         }
-      });
+      );
 
 
       // Start off with a random cluster of 10 objects.
