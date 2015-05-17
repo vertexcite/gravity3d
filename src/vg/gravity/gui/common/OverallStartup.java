@@ -50,18 +50,6 @@ public class OverallStartup {
 
       // Start off with a random cluster of 10 objects.
       gController.randomSetup(100,1,10,20,10,inPlane);
-
-
-
-      /** @todo Look closely at reason for lack of synchronization when Animator starts. */
-      // Pause 1 second, then start animation Thread
-      // Not quite sure why.  There seems to be a problem
-      // That the animator starts before something else is ready.
-      try {
-         Thread.sleep(1000);
-      }
-      catch (InterruptedException ex) {
-      }
       gController.startAnimatorThread();
 
    }
