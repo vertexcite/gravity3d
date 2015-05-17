@@ -1,15 +1,10 @@
 package gravity.gravity2D;
 
 import gravity.GravityController;
-import gravity.MultiBodySimulator;
 import gravity.GravityGui;
 
-
-import vgnumerical.IvpOdeSystemSolver;
-import vgnumerical.RungeKuttaFehlberg45;
-
-import javax.swing.UIManager;
-import java.awt.*;
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 public class Gravity2DStarter {
 

@@ -1,11 +1,9 @@
 package gravity.gravity3D;
 
-import javax.vecmath.Vector3d;
-import javax.vecmath.Point3d;
-
-import gravity.*;
+import gravity.PointMass;
 
 import javax.media.j3d.TransformGroup;
+import javax.vecmath.Point3d;
 import javax.vecmath.Vector3d;
 
 /**

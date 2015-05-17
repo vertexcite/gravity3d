@@ -1,13 +1,18 @@
 package vg.gravity.gui.common;
 
-import javax.swing.*;
-import java.awt.event.*;
+import gravity.GravityController;
+import gravity.GravityForceLaw;
+
+import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 import simulation.mechanical.ForceLaw;
-import simulation.mechanical.springs.SpringForceLaw;
 import simulation.mechanical.springs.SpringDampedForceLaw;
-import gravity.GravityForceLaw;
-import gravity.GravityController;
 
 
 

@@ -1,6 +1,5 @@
 package vgjava3d;
 
-import com.sun.j3d.utils.behaviors.mouse.MouseRotate;
 
 /**
  * Title:        Gravity 3D

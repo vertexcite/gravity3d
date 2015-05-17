@@ -1,35 +1,55 @@
 package gravity.gravity3D;
 
-import gravity.*;
-import simulation.mechanical.springs.SpringForceLaw;
-import simulation.mechanical.springs.SpringDampedForceLaw;
-import simulation.mechanical.ForceLaw;
+import gravity.GravityController;
 import gravity.GravityGui;
+import gravity.GravityObjectFactory;
+import gravity.PointMass;
 
-import javax.vecmath.Vector3d;
+import java.awt.BorderLayout;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.WindowEvent;
+import java.util.ArrayList;
+import java.util.List;
+
+import javax.media.j3d.AmbientLight;
+import javax.media.j3d.Appearance;
+import javax.media.j3d.BoundingSphere;
+import javax.media.j3d.BranchGroup;
+import javax.media.j3d.Canvas3D;
+import javax.media.j3d.DirectionalLight;
+import javax.media.j3d.Locale;
+import javax.media.j3d.Material;
+import javax.media.j3d.PolygonAttributes;
+import javax.media.j3d.SpotLight;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
+import javax.media.j3d.View;
+import javax.media.j3d.ViewPlatform;
+import javax.media.j3d.VirtualUniverse;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JToolBar;
+import javax.vecmath.Color3f;
+import javax.vecmath.Matrix3d;
 import javax.vecmath.Point3d;
+import javax.vecmath.Vector3d;
+import javax.vecmath.Vector3f;
 
-import com.sun.j3d.utils.behaviors.mouse.MouseBehavior;
+import vg.animation.gui.AnimationPanel;
+import vg.gravity.gui.common.FilePanel;
+import vg.gravity.gui.common.PhysicsAllPanel;
+import vg.gravity.gui.common.PhysicsParametersPanel;
+import vg.gravity.gui.common.SolverPanel;
+import vgjava3d.MouseRotate2;
+
 import com.sun.j3d.utils.behaviors.mouse.MouseTranslate;
 import com.sun.j3d.utils.behaviors.mouse.MouseZoom;
-import vgjava3d.MouseRotate2;
-import java.applet.Applet;
-import java.awt.event.*;
-import com.sun.j3d.utils.applet.MainFrame;
-import com.sun.j3d.utils.geometry.ColorCube;
-import com.sun.j3d.utils.geometry.Cone;
 import com.sun.j3d.utils.geometry.Sphere;
-import com.sun.j3d.utils.universe.*;
-import javax.media.j3d.*;
-import javax.vecmath.*;
-
-import javax.swing.*;
-import java.awt.*;
-
-import java.util.List;
-import java.util.ArrayList;
-import vg.gravity.gui.common.*;
-import vg.animation.gui.*;
+import com.sun.j3d.utils.universe.SimpleUniverse;
+import com.sun.j3d.utils.universe.ViewingPlatform;
 
 /**
  * Title:        Gravity 3D Simulation

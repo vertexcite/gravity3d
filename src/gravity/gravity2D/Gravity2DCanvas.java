@@ -1,15 +1,19 @@
 package gravity.gravity2D;
 
-import javax.vecmath.Vector3d;
+import gravity.GravityController;
+import gravity.MultiBodySimulator;
+import gravity.PointMass;
+
+import java.awt.Canvas;
+import java.awt.Color;
+import java.awt.Graphics;
+import java.awt.Image;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseMotionListener;
+
 import javax.vecmath.Point3d;
-
-import gravity.*;
-
-import java.util.*;
-
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.JToolBar;
+import javax.vecmath.Vector3d;
 
 
 /**

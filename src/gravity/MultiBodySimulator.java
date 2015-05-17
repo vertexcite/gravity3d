@@ -1,15 +1,16 @@
 package gravity;
 
-import vgnumerical.*;
-
-import java.util.List;
 import java.util.ArrayList;
+import java.util.List;
 
-import javax.vecmath.Vector3d;
 import javax.vecmath.Point3d;
-import simulation.mechanical.ForceLaw;
+import javax.vecmath.Vector3d;
+
 import simulation.mechanical.AccelerationHolder;
-import simulation.mechanical.springs.SpringForceLaw;
+import simulation.mechanical.ForceLaw;
+import vgnumerical.IvpOdeSystemFunction;
+import vgnumerical.IvpOdeSystemSolver;
+import vgnumerical.Vector;
 
 /**
  * Title:        Gravity Simulation

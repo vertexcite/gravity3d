@@ -1,16 +1,15 @@
 package vg.gravity.gui.common;
 
+import gravity.GravityController;
+import gravity.GravityGui;
+import gravity.gravity2D.Gravity2DStarter;
+import gravity.gravity3D.Gravity3DStarter;
+
 import java.lang.reflect.InvocationTargetException;
 
 import javax.swing.SwingUtilities;
 
 import vg.gravity.GravityModelStartup;
-import gravity.gravity2D.Gravity2DFrame;
-import gravity.gravity2D.Gravity2DStarter;
-import gravity.gravity3D.GravityFrame3D;
-import gravity.gravity3D.Gravity3DStarter;
-import gravity.GravityController;
-import gravity.GravityGui;
 
 /**
  * Title:        Gravity 3D

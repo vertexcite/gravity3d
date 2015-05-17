@@ -1,10 +1,11 @@
 package simulation.mechanical.springs;
 
 import gravity.PointMass;
+
+import javax.vecmath.Vector3d;
+
 import simulation.mechanical.AccelerationHolder;
 import simulation.mechanical.ForceLaw;
-import javax.vecmath.Vector3d;
-import javax.vecmath.Point3d;
 import vgnumerical.Utility;
 
 /**

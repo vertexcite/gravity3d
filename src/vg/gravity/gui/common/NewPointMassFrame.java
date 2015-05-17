@@ -1,14 +1,20 @@
 package vg.gravity.gui.common;
 
-import javax.swing.*;
-import java.awt.*;
-import java.awt.event.*;
-
-import javax.vecmath.Point3d;
-import javax.vecmath.Vector3d;
-
 import gravity.GravityController;
 import gravity.PointMass;
+
+import java.awt.BorderLayout;
+import java.awt.GridLayout;
+import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.vecmath.Point3d;
+import javax.vecmath.Vector3d;
 
 
 /**

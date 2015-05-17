@@ -1,13 +1,11 @@
 package gravity.gravity3D;
 
 
-import java.awt.*;
-import java.awt.event.*;
-import javax.swing.*;
-
 import gravity.GravityController;
-import gravity.MultiBodySimulator;
 import gravity.GravityGui;
+
+import java.awt.Dimension;
+import java.awt.Toolkit;
 
 /**
  * Title:        Gravity 3D

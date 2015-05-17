@@ -1,9 +1,10 @@
 package gravity.gravity3D;
 
-import gravity.*;
+import gravity.GravityController;
+import gravity.MultiBodySimulator;
 
-import javax.media.j3d.*;
-import com.sun.j3d.utils.universe.SimpleUniverse;
+import javax.media.j3d.Transform3D;
+import javax.media.j3d.TransformGroup;
 import javax.vecmath.Vector3d;
 
 

@@ -1,10 +1,17 @@
 package vg.gravity.gui.common;
 
-import javax.swing.*;
-import java.awt.event.*;
-import java.awt.BorderLayout;
-
 import gravity.GravityController;
+
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.SwingConstants;
 
 /**
  * Title:        Gravity 3D

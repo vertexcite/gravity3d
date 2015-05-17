@@ -1,11 +1,17 @@
 package vg.gravity.file;
 
-import java.io.*;
-import java.util.List;
-import java.util.Iterator;
-
 import gravity.GravityController;
 import gravity.PointMass;
+
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.PrintWriter;
+import java.util.Iterator;
+import java.util.List;
 
 /**
  * Title:        Gravity 3D

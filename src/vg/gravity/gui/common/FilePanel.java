@@ -1,12 +1,15 @@
 package vg.gravity.gui.common;
 
-import javax.swing.*;
+import gravity.GravityController;
+
+import java.awt.event.ActionEvent;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 
-import gravity.GravityController;
+import javax.swing.JButton;
+import javax.swing.JPanel;
+
 import vg.gravity.file.LoadSaveController;
-import java.awt.event.*;
 
 
 /**

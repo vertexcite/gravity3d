@@ -1,9 +1,9 @@
 package vg.gravity;
 
-import gravity.*;
-import vgnumerical.RungeKutta;
-import vgnumerical.RungeKuttaFehlberg45;
+import gravity.GravityController;
+import gravity.MultiBodySimulator;
 import vgnumerical.IvpOdeSystemSolver;
+import vgnumerical.RungeKuttaFehlberg45;
 
 
 /**
