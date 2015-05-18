@@ -52,7 +52,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
 
       // Try get rid of radial component of velocity.
       for (int i=0; i<count; i++) {
-         PointMass m = (PointMass)pointMasses.get(i);
+         PointMass m = pointMasses.get(i);
          Vector3d posiDir = new Vector3d(m.position);
          posiDir.normalize();
          m.velocity.cross(m.velocity, posiDir);
@@ -100,7 +100,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
       double totalMass = 0;
       int count = pointMasses.size();
       for (int i=0; i<count; i++) {
-         PointMass g = (PointMass)pointMasses.get(i);
+         PointMass g = pointMasses.get(i);
          Vector3d velocity = g.velocity;
          Point3d position = g.position;
 
@@ -121,7 +121,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
 
       // Translate all velocities by COM velocity negated.
       for (int i=0; i<count; i++) {
-         PointMass g = (PointMass)pointMasses.get(i);
+         PointMass g = pointMasses.get(i);
          g.velocity.sub(COMvelocity);
          g.position.sub(COMposition);
       }
@@ -141,7 +141,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
       double totalMass = 0;
       int count = pointMasses.size();
       for (int i=0; i<count; i++) {
-         PointMass g = (PointMass)pointMasses.get(i);
+         PointMass g = pointMasses.get(i);
          Vector3d velocity = g.velocity;
          position.set(g.position.x, g.position.y, g.position.z);
 
@@ -162,8 +162,8 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
    }
 
 
-   protected List pointMasses = new ArrayList();
-   public List getPointMasses() {
+   protected List<PointMass> pointMasses = new ArrayList<PointMass>();
+   public List<PointMass> getPointMasses() {
       return pointMasses;
    }
 
@@ -199,7 +199,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
 
 
       for (int i=0; i<pointMasses.size(); i++) {
-         ((PointMass)pointMasses.get(i)).zeroAccelleration();
+         (pointMasses.get(i)).zeroAccelleration();
       }
 
       // Reuse this for each method.  Could have reused over object lifecycle, but then
@@ -215,8 +215,8 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
       // Iterate over interactions between all the gravity objects.
       for (int i=0; i<pointMasses.size(); i++) {
          for (int j=0; j<i; j++) {
-            PointMass g1 = (PointMass)pointMasses.get(i);
-            PointMass g2 = (PointMass)pointMasses.get(j);
+            PointMass g1 = pointMasses.get(i);
+            PointMass g2 = pointMasses.get(j);
 
             // Use force plugin
             forceLaw.interactionAcceleration(g1, g2, accelerationHolder, workspace);
@@ -302,7 +302,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
       double[] yelements = y.getElements();
 
       for (int i=0; i<count; i++) {
-         PointMass g = (PointMass)pointMasses.get(i);
+         PointMass g = pointMasses.get(i);
          int j = i*6;
          g.position.x = yelements[j+0];
          g.position.y = yelements[j+1];
@@ -324,7 +324,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
 
       double[] result = returnValueHolder.getElements();
       for (int i=0; i<count; i++) {
-         PointMass g = (PointMass)pointMasses.get(i);
+         PointMass g = pointMasses.get(i);
          int j = i*6;
          result[j+0] = g.velocity.x;
          result[j+1] = g.velocity.y;
@@ -343,7 +343,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
       double[] result = new double [count * 6];
       for (int i=0; i<count; i++) {
          int j = i*6;
-         PointMass g = (PointMass)pointMasses.get(i);
+         PointMass g = pointMasses.get(i);
          result[j+0] = g.position.x;
          result[j+1] = g.position.y;
          result[j+2] = g.position.z;

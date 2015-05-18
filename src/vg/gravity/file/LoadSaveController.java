@@ -79,16 +79,16 @@ public class LoadSaveController {
       boolean wasPaused = gController.isPaused();
       gController.pause();
 //      System.out.println("Saving");
-      List gMasses = gController.getMultiBodySimulator().getPointMasses();
+      List<PointMass> gMasses = gController.getMultiBodySimulator().getPointMasses();
       System.out.println("Size: " + gMasses.size() );
 
-      Iterator it = gMasses.iterator();
+      Iterator<PointMass> it = gMasses.iterator();
       FileOutputStream fos = new FileOutputStream("gravity.dat");
       PrintWriter pw = new PrintWriter(fos);
 //      pw = new PrintWriter(System.out);
 
       while (it.hasNext() ) {
-         PointMass pm = (PointMass)it.next();
+         PointMass pm = it.next();
          pw.println(pm.position.x);
          pw.println(pm.position.y);
          pw.println(pm.position.z);

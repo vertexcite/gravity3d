@@ -1,7 +1,10 @@
 package gravity.gravity3D;
 
+import java.util.List;
+
 import gravity.GravityController;
 import gravity.MultiBodySimulator;
+import gravity.PointMass;
 
 import javax.media.j3d.Transform3D;
 import javax.media.j3d.TransformGroup;
@@ -21,7 +24,7 @@ public class GravityCanvas3D {
    public void repaint() {
       //      System.out.println("Here in GravityCanvas3D.repaint()");
       MultiBodySimulator multibodySim = gController.getMultiBodySimulator();
-      java.util.List gs = multibodySim.getPointMasses();
+      List<PointMass> gs = multibodySim.getPointMasses();
 
 
       Vector3d currentVector = new Vector3d();
