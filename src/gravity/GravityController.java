@@ -129,9 +129,6 @@ public class GravityController implements AnimatedObject, AnimatorController {
    public boolean isPaused() {
       return paused;
    }
-   public void stopAnimation() {
-      animatorThread.stopAnimation();
-   }
 
 
 

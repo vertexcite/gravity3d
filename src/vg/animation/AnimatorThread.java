@@ -61,11 +61,5 @@ public class AnimatorThread extends Thread {
       animationPaused = true;
    }
 
-   public void stopAnimation() {
-      animationActive = false;
-      synchronized (this) {
-        notify();
-      }
-   }
 
 }

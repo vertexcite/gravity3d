@@ -14,5 +14,4 @@ public interface AnimatorController {
    public void setTimestep(double newTimestep);
    public void restart();
    public void pause();
-   public void stopAnimation();
 }
