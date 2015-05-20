@@ -31,7 +31,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
 //      neededTimeStep = 0.5;
 //      timeStep = 0.5;
 
-      getPointMasses().clear();
+      pointMasses.clear();
    }
 
 
@@ -164,7 +164,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
 
    protected List<PointMass> pointMasses = new ArrayList<PointMass>();
    public List<PointMass> getPointMasses() {
-      return pointMasses;
+      return new ArrayList<PointMass>(pointMasses);
    }
 
    /**
