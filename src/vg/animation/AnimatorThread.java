@@ -18,9 +18,9 @@ public class AnimatorThread extends Thread {
       this.animatee = animatee;
    }
 
-   private boolean animationActive = true;
-   private boolean animationPaused = false;
-   private double timestep = 0.05;
+   volatile private boolean animationActive = true;
+   volatile private boolean animationPaused = false;
+   volatile private double timestep = 0.05;
    private AnimatedObject animatee;
 
    public double getTimestep() {
@@ -30,38 +30,42 @@ public class AnimatorThread extends Thread {
       timestep = newTimestep;
    }
 
-   public void run() {
-      try {
-         while(animationActive) {
-            synchronized (this) {
-               while(animationPaused && animationActive) {
-                  wait();
-               }
+  public void run() {
+    try {
+      while (animationActive) {
+        while (animationPaused && animationActive) {
+          synchronized (this) {
+            wait();
+          }
+        }
 
-               if (animationActive) {
-                  Thread.sleep((long)(timestep*1000));
-                  animatee.animate();
-                  //         System.out.println("About to call gController.repaint() from Animator");
-               }
-            }
-         }
-      } catch (InterruptedException e) {
-         // animationPaused = true;
+        if (animationActive) {
+          Thread.sleep((long) (timestep * 1000));
+          animatee.animate();
+          // System.out.println("About to call gController.repaint() from Animator");
+        }
+      }
+    } catch (InterruptedException e) {
+      // animationPaused = true;
+    }
+  }
+
+   public void restart() {
+      animationPaused = false;
+      synchronized (this) {
+        notify();
       }
    }
 
-   public synchronized void restart() {
-      animationPaused = false;
-      notify();
-   }
-
-   public synchronized void pause() {
+   public void pause() {
       animationPaused = true;
    }
 
-   public synchronized void stopAnimation() {
+   public void stopAnimation() {
       animationActive = false;
-      notify();
+      synchronized (this) {
+        notify();
+      }
    }
 
 }
