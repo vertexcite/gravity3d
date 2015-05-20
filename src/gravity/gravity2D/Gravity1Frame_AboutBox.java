@@ -28,13 +28,14 @@ public class Gravity1Frame_AboutBox extends JDialog implements ActionListener {
    JLabel label2 = new JLabel();
    JLabel label3 = new JLabel();
    JLabel label4 = new JLabel();
+   JLabel label5 = new JLabel();
    BorderLayout borderLayout1 = new BorderLayout();
    BorderLayout borderLayout2 = new BorderLayout();
    FlowLayout flowLayout1 = new FlowLayout();
    GridLayout gridLayout1 = new GridLayout();
    String product = "Gravity Simulation";
-   String version = "1.0";
-   String copyright = "Copyright (c) 2001";
+   String version = "v0.1.1 alpha";
+   String copyright = "Copyright (c) 2001-2015";
    String comments = "";
    public Gravity1Frame_AboutBox(Frame parent) {
       super(parent);
@@ -57,12 +58,13 @@ public class Gravity1Frame_AboutBox extends JDialog implements ActionListener {
       insetsPanel1.setLayout(flowLayout1);
       insetsPanel2.setLayout(flowLayout1);
       insetsPanel2.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
-      gridLayout1.setRows(4);
+      gridLayout1.setRows(5);
       gridLayout1.setColumns(1);
       label1.setText(product);
-      label2.setText("By Randall Britten");
-      label3.setText("Copyright (c) 2002-2015");
-      label4.setText("github.com/vertexcite");
+      label2.setText("By Randall Britten"); // TODO Centralise this info (and copyright etc).
+      label3.setText("Copyright (c) 2001-2015");
+      label4.setText("Version: " + version);
+      label5.setText("github.com/vertexcite");
       insetsPanel3.setLayout(gridLayout1);
       insetsPanel3.setBorder(BorderFactory.createEmptyBorder(10, 60, 10, 10));
       button1.setText("Ok");
@@ -74,6 +76,7 @@ public class Gravity1Frame_AboutBox extends JDialog implements ActionListener {
       insetsPanel3.add(label2, null);
       insetsPanel3.add(label3, null);
       insetsPanel3.add(label4, null);
+      insetsPanel3.add(label5, null);
       panel2.add(insetsPanel3, BorderLayout.CENTER);
       insetsPanel1.add(button1, null);
       panel1.add(insetsPanel1, BorderLayout.SOUTH);
