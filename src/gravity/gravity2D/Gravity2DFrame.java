@@ -69,7 +69,7 @@ public class Gravity2DFrame extends JFrame implements GravityGui {
       //setIconImage(Toolkit.getDefaultToolkit().createImage(Gravity1Frame.class.getResource("[Your Icon]")));
       contentPane = (JPanel) this.getContentPane();
       contentPane.setLayout(borderLayout1);
-      this.setSize(new Dimension(800, 400));
+      this.setSize(new Dimension(1000, 700));
       this.setTitle("Gravity Simulation");
       statusBar.setText(" ");
       jMenuFile.setText("File");
