@@ -339,7 +339,6 @@ public class GravityFrame3D extends JFrame implements GravityObjectFactory, Grav
    VirtualUniverse createUniverse(Canvas3D c) {
       VirtualUniverse vu = new VirtualUniverse();
       locale = new Locale(vu);
-      BranchGroup vbg = new BranchGroup();
       View view = new View();
       viewingPlatform = new ViewingPlatform();
       locale.addBranchGraph(viewingPlatform);
@@ -407,7 +406,6 @@ public class GravityFrame3D extends JFrame implements GravityObjectFactory, Grav
    }
 
 
-   List toolbars = new ArrayList();
    int toolbarCount;
    JToolBar jToolBar1 = new JToolBar();
    JPanel jPanel_3DView = new JPanel();
