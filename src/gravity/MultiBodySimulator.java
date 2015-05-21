@@ -39,7 +39,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
       // Do nothing.
    }
 
-   public void randomSetup2D(int count, double minMass, double maxMass, double initialAreaRadius, double velocityRange) {
+   public synchronized void randomSetup2D(int count, double minMass, double maxMass, double initialAreaRadius, double velocityRange) {
       randomSetup(count, minMass, maxMass, initialAreaRadius, initialAreaRadius, 0, velocityRange, velocityRange, 0);
 
       // Finally, start with the COM velocity and position at zero.
@@ -47,7 +47,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
 
    }
 
-   public void randomSetup3D(int count, double minMass, double maxMass, double initialAreaRadius, double velocityRange) {
+   public synchronized void randomSetup3D(int count, double minMass, double maxMass, double initialAreaRadius, double velocityRange) {
       randomSetup(count, minMass, maxMass, initialAreaRadius, initialAreaRadius, initialAreaRadius, velocityRange, velocityRange, velocityRange);
 
       // Try get rid of radial component of velocity.
@@ -69,7 +69,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
     * @param initialAreaRadius Radius of circle within which to distribute objects.
     * @param velocityRange Range within which each component of each object's velocity is randomly chosen.
     */
-   public void randomSetup(int count, double minMass, double maxMass, double xInitialAreaRadius, double yInitialAreaRadius, double zInitialAreaRadius, double xVelocityRange, double yVelocityRange, double zVelocityRange) {
+   public synchronized void randomSetup(int count, double minMass, double maxMass, double xInitialAreaRadius, double yInitialAreaRadius, double zInitialAreaRadius, double xVelocityRange, double yVelocityRange, double zVelocityRange) {
       clear();
       for (int i=0; i<count; i++) {
          Point3d position = new Point3d(
@@ -94,7 +94,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
 
    }
 
-   public void coMove() {
+   public synchronized void coMove() {
       Vector3d COMvelocity = new Vector3d();
       Point3d COMposition = new Point3d();
       double totalMass = 0;
@@ -133,7 +133,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
    /**
     * Assumes COM at origin.
     */
-   public void angularMomentumPrint() {
+   public synchronized void angularMomentumPrint() {
       Vector3d angularMomentum = new Vector3d();
       Vector3d workspace = new Vector3d();
       Vector3d position = new Vector3d();
@@ -163,7 +163,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
 
 
    protected List<PointMass> pointMasses = new ArrayList<PointMass>();
-   public List<PointMass> getPointMasses() {
+   public synchronized List<PointMass> getPointMasses() {
       return new ArrayList<PointMass>(pointMasses);
    }
 
@@ -177,7 +177,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
       pointMasses.add(g1);
    }
 
-   protected double timeStep = 0.01;
+   protected volatile double timeStep = 0.01;
    public double getTimeStep() {
       return timeStep;
    }
@@ -231,8 +231,8 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
    }
 
 
-   protected double neededTimeStep;
-   protected double timeElapsed;
+   protected volatile double neededTimeStep;
+   protected volatile double timeElapsed;
    private GravityObjectFactory gravityObjectFactory = new DefaultGravityObjectFactory();
 
    private ForceLaw forceLaw = new GravityForceLaw();
@@ -252,16 +252,16 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
    public double getNeededTimeStep() {
       return neededTimeStep;
    }
-   public void setGravityObjectFactory(GravityObjectFactory newGravityObjectFactory) {
+   public synchronized void setGravityObjectFactory(GravityObjectFactory newGravityObjectFactory) {
       gravityObjectFactory = newGravityObjectFactory;
    }
-   public GravityObjectFactory getGravityObjectFactory() {
+   public synchronized GravityObjectFactory getGravityObjectFactory() {
       return gravityObjectFactory;
    }
-   public void setForceLaw(ForceLaw newForceLaw) {
+   public synchronized void setForceLaw(ForceLaw newForceLaw) {
       forceLaw = newForceLaw;
    }
-   public ForceLaw getForceLaw() {
+   public synchronized ForceLaw getForceLaw() {
       return forceLaw;
    }
 
@@ -354,7 +354,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
       return new Vector(result);
    }
 
-   public void setSolver(IvpOdeSystemSolver newSolver) {
+   public synchronized void setSolver(IvpOdeSystemSolver newSolver) {
       solver = newSolver;
       solver.setSystemFunction(this);
 
@@ -362,7 +362,7 @@ public class MultiBodySimulator implements IvpOdeSystemFunction {
    /**
     * The IVP ODE System Solver to plug-in.
     */
-   public IvpOdeSystemSolver getSolver() {
+   public synchronized IvpOdeSystemSolver getSolver() {
       return solver;
    }
 
