@@ -246,7 +246,7 @@ public class GravityFrame3D extends JFrame implements GravityObjectFactory, Grav
    private void jbInit() throws Exception {
 
       this.getContentPane().setLayout(new BorderLayout());
-      this.setTitle("Gravity 3D by Randall Britten, Copyright (c) 2001-2015 -  v0.1.1-alpha");
+      this.setTitle("Gravity 3D by Randall Britten, Copyright (c) 2001-2020 -  v0.1.2-alpha");
       gravityCanvas = new GravityCanvas3D(gController);
 
       Canvas3D c = new Canvas3D(SimpleUniverse.getPreferredConfiguration());

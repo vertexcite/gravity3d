@@ -34,8 +34,8 @@ public class Gravity1Frame_AboutBox extends JDialog implements ActionListener {
    FlowLayout flowLayout1 = new FlowLayout();
    GridLayout gridLayout1 = new GridLayout();
    String product = "Gravity Simulation";
-   String version = "v0.1.1 alpha";
-   String copyright = "Copyright (c) 2001-2015";
+   String version = "v0.1.2 alpha";
+   String copyright = "Copyright (c) 2001-2020";
    String comments = "";
    public Gravity1Frame_AboutBox(Frame parent) {
       super(parent);
@@ -62,7 +62,7 @@ public class Gravity1Frame_AboutBox extends JDialog implements ActionListener {
       gridLayout1.setColumns(1);
       label1.setText(product);
       label2.setText("By Randall Britten"); // TODO Centralise this info (and copyright etc).
-      label3.setText("Copyright (c) 2001-2015");
+      label3.setText("Copyright (c) 2001-2020");
       label4.setText("Version: " + version);
       label5.setText("github.com/vertexcite");
       insetsPanel3.setLayout(gridLayout1);
