@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="gravity-sim" default="all">
+  
+  
+  <property file="gravity-sim.properties"/>
+  <!-- Uncomment the following property if no tests compilation is needed -->
+  <!-- 
+  <property name="skip.tests" value="true"/>
+   -->
+  
+  <!-- Compiler options -->
+  
+  <property name="compiler.debug" value="on"/>
+  <property name="compiler.generate.no.warnings" value="off"/>
+  <property name="compiler.args" value=""/>
+  <property name="compiler.max.memory" value="700m"/>
+  <patternset id="ignored.files">
+    <exclude name="**/*.hprof/**"/>
+    <exclude name="**/*.pyc/**"/>
+    <exclude name="**/*.pyo/**"/>
+    <exclude name="**/*.rbc/**"/>
+    <exclude name="**/*.yarb/**"/>
+    <exclude name="**/*~/**"/>
+    <exclude name="**/.DS_Store/**"/>
+    <exclude name="**/.git/**"/>
+    <exclude name="**/.hg/**"/>
+    <exclude name="**/.svn/**"/>
+    <exclude name="**/CVS/**"/>
+    <exclude name="**/__pycache__/**"/>
+    <exclude name="**/_svn/**"/>
+    <exclude name="**/vssver.scc/**"/>
+    <exclude name="**/vssver2.scc/**"/>
+  </patternset>
+  <patternset id="library.patterns">
+    <include name="*.egg"/>
+    <include name="*.zip"/>
+    <include name="*.war"/>
+    <include name="*.swc"/>
+    <include name="*.ear"/>
+    <include name="*.jar"/>
+    <include name="*.klib"/>
+    <include name="*.ane"/>
+  </patternset>
+  <patternset id="compiler.resources">
+    <exclude name="**/?*.java"/>
+    <exclude name="**/?*.form"/>
+    <exclude name="**/?*.class"/>
+    <exclude name="**/?*.groovy"/>
+    <exclude name="**/?*.scala"/>
+    <exclude name="**/?*.flex"/>
+    <exclude name="**/?*.kt"/>
+    <exclude name="**/?*.clj"/>
+    <exclude name="**/?*.aj"/>
+  </patternset>
+  
+  
+  <!-- Project Libraries -->
+  
+  <path id="library.jogamp-and-java3d-runtime-dependencies.classpath">
+    <pathelement location="${basedir}/deps/java3d-1.5.2/j3d-core-1.5.2.jar"/>
+    <pathelement location="${basedir}/deps/java3d-1.5.2/j3d-core-utils-1.5.2.jar"/>
+    <pathelement location="${basedir}/deps/java3d-1.5.2/vecmath-1.5.2.jar"/>
+    <pathelement location="${basedir}/deps/mac-deps/jogamp-2.4.0-rc-20200307/gluegen-rt-natives-macosx-universal.jar"/>
+    <pathelement location="${basedir}/deps/mac-deps/jogamp-2.4.0-rc-20200307/gluegen-rt.jar"/>
+    <pathelement location="${basedir}/deps/mac-deps/jogamp-2.4.0-rc-20200307/joal-natives-macosx-universal.jar"/>
+    <pathelement location="${basedir}/deps/mac-deps/jogamp-2.4.0-rc-20200307/joal.jar"/>
+    <pathelement location="${basedir}/deps/mac-deps/jogamp-2.4.0-rc-20200307/jogl-all-natives-macosx-universal.jar"/>
+    <pathelement location="${basedir}/deps/mac-deps/jogamp-2.4.0-rc-20200307/jogl-all.jar"/>
+  </path>
+  
+  <!-- Modules -->
+  
+  <import file="${basedir}/module_gravity-sim.xml"/>
+  
+  <target name="get.deps" description="Download zip of jars and unzip">
+    <get src="https://github.com/vertexcite/gravity3d/releases/download/v0.1.2-alpha/deps.zip" dest="${basedir}/deps.zip"/>
+    <unzip src="${basedir}/deps.zip" dest="${basedir}"/>
+  </target>
+
+  <target name="init" description="Build initialization">
+    <!-- Perform any build initialization in this target -->
+  </target>
+  
+  <target name="clean" depends="clean.module.gravity-sim, clean.artifact.gravity-3d-jars" description="cleanup all"/>
+  
+  <target name="build.modules" depends="init, clean, compile.module.gravity-sim" description="build all modules"/>
+  
+  <target name="init.artifacts">
+    <property name="artifacts.temp.dir" value="${basedir}/__artifacts_temp"/>
+    <property name="artifact.output.gravity-3d-jars" value="${basedir}/out/artifacts/gravity_3d_jars"/>
+    <mkdir dir="${artifacts.temp.dir}"/>
+    <property name="temp.jar.path.Gravity3D.jar" value="${artifacts.temp.dir}/Gravity3D.jar"/>
+  </target>
+  
+  <target name="clean.artifact.gravity-3d-jars" description="clean gravity-3d-jars artifact output">
+    <delete dir="${artifact.output.gravity-3d-jars}"/>
+  </target>
+  
+  <target name="artifact.gravity-3d-jars" depends="init.artifacts, compile.module.gravity-sim" description="Build &#39;gravity-3d-jars&#39; artifact">
+    <mkdir dir="${artifact.output.gravity-3d-jars}"/>
+    <jar destfile="${temp.jar.path.Gravity3D.jar}" duplicate="preserve" filesetmanifest="mergewithoutmain">
+      <zipfileset dir="${gravity-sim.output.dir}"/>
+      <zipfileset file="${basedir}/META-INF/MANIFEST.MF" prefix="META-INF"/>
+    </jar>
+    <copy file="${temp.jar.path.Gravity3D.jar}" tofile="${artifact.output.gravity-3d-jars}/Gravity3D.jar"/>
+    <copy file="${basedir}/deps/mac-deps/jogamp-2.4.0-rc-20200307/gluegen-rt-natives-macosx-universal.jar" tofile="${artifact.output.gravity-3d-jars}/gluegen-rt-natives-macosx-universal.jar"/>
+    <copy file="${basedir}/deps/mac-deps/jogamp-2.4.0-rc-20200307/gluegen-rt.jar" tofile="${artifact.output.gravity-3d-jars}/gluegen-rt.jar"/>
+    <copy file="${basedir}/deps/mac-deps/jogamp-2.4.0-rc-20200307/joal-natives-macosx-universal.jar" tofile="${artifact.output.gravity-3d-jars}/joal-natives-macosx-universal.jar"/>
+    <copy file="${basedir}/deps/mac-deps/jogamp-2.4.0-rc-20200307/joal.jar" tofile="${artifact.output.gravity-3d-jars}/joal.jar"/>
+    <copy file="${basedir}/deps/mac-deps/jogamp-2.4.0-rc-20200307/jogl-all-natives-macosx-universal.jar" tofile="${artifact.output.gravity-3d-jars}/jogl-all-natives-macosx-universal.jar"/>
+    <copy file="${basedir}/deps/mac-deps/jogamp-2.4.0-rc-20200307/jogl-all.jar" tofile="${artifact.output.gravity-3d-jars}/jogl-all.jar"/>
+    <copy file="${basedir}/deps/java3d-1.5.2/j3d-core-1.5.2.jar" tofile="${artifact.output.gravity-3d-jars}/j3d-core-1.5.2.jar"/>
+    <copy file="${basedir}/deps/java3d-1.5.2/j3d-core-utils-1.5.2.jar" tofile="${artifact.output.gravity-3d-jars}/j3d-core-utils-1.5.2.jar"/>
+    <copy file="${basedir}/deps/java3d-1.5.2/vecmath-1.5.2.jar" tofile="${artifact.output.gravity-3d-jars}/vecmath-1.5.2.jar"/>
+    <copy file="${basedir}/deps/mac-deps/launcher" tofile="${artifact.output.gravity-3d-jars}/launcher"/>
+    <chmod file="${artifact.output.gravity-3d-jars}/launcher"  perm="ugo+rx"/>
+  </target>
+  
+  <target name="build.all.artifacts" depends="artifact.gravity-3d-jars" description="Build all artifacts">
+    
+    <!-- Delete temporary files -->
+    <delete dir="${artifacts.temp.dir}"/>
+  </target>
+  
+  <target name="all" depends="build.modules, build.all.artifacts" description="build all"/>
+</project>

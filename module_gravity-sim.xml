@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="module_gravity-sim" default="compile.module.gravity-sim">
+  <dirname property="module.gravity-sim.basedir" file="${ant.file.module_gravity-sim}"/>
+  
+  <property name="compiler.args.gravity-sim" value="-encoding UTF-8 -source 8 -target 8 ${compiler.args}"/>
+  
+  <property name="gravity-sim.output.dir" value="${module.gravity-sim.basedir}/out/production/gravity-sim"/>
+  <property name="gravity-sim.testoutput.dir" value="${module.gravity-sim.basedir}/out/test/gravity-sim"/>
+  
+  <path id="gravity-sim.module.bootclasspath">
+    <!-- Paths to be included in compilation bootclasspath -->
+  </path>
+  
+  <path id="gravity-sim.module.production.classpath">
+    <path refid="library.jogamp-and-java3d-runtime-dependencies.classpath"/>
+  </path>
+  
+  <path id="gravity-sim.runtime.production.module.classpath">
+    <pathelement location="${gravity-sim.output.dir}"/>
+    <path refid="library.jogamp-and-java3d-runtime-dependencies.classpath"/>
+  </path>
+  
+  <path id="gravity-sim.module.classpath">
+    <pathelement location="${gravity-sim.output.dir}"/>
+    <path refid="library.jogamp-and-java3d-runtime-dependencies.classpath"/>
+  </path>
+  
+  <path id="gravity-sim.runtime.module.classpath">
+    <pathelement location="${gravity-sim.testoutput.dir}"/>
+    <pathelement location="${gravity-sim.output.dir}"/>
+    <path refid="library.jogamp-and-java3d-runtime-dependencies.classpath"/>
+  </path>
+  
+  
+  <patternset id="excluded.from.module.gravity-sim">
+    <patternset refid="ignored.files"/>
+  </patternset>
+  
+  <patternset id="excluded.from.compilation.gravity-sim">
+    <patternset refid="excluded.from.module.gravity-sim"/>
+  </patternset>
+  
+  <path id="gravity-sim.module.sourcepath">
+    <dirset dir="${module.gravity-sim.basedir}">
+      <include name="src"/>
+    </dirset>
+  </path>
+  
+  
+  <target name="compile.module.gravity-sim" depends="compile.module.gravity-sim.production,compile.module.gravity-sim.tests" description="Compile module gravity-sim"/>
+  
+  <target name="compile.module.gravity-sim.production" description="Compile module gravity-sim; production classes">
+    <mkdir dir="${gravity-sim.output.dir}"/>
+    <javac destdir="${gravity-sim.output.dir}" debug="${compiler.debug}" nowarn="${compiler.generate.no.warnings}" memorymaximumsize="${compiler.max.memory}" fork="true" >
+      <compilerarg line="${compiler.args.gravity-sim}"/>
+      <bootclasspath refid="gravity-sim.module.bootclasspath"/>
+      <classpath refid="gravity-sim.module.production.classpath"/>
+      <src refid="gravity-sim.module.sourcepath"/>
+      <patternset refid="excluded.from.compilation.gravity-sim"/>
+    </javac>
+    
+    <copy todir="${gravity-sim.output.dir}">
+      <fileset dir="${module.gravity-sim.basedir}/src">
+        <patternset refid="compiler.resources"/>
+        <type type="file"/>
+      </fileset>
+    </copy>
+  </target>
+  
+  <target name="compile.module.gravity-sim.tests" depends="compile.module.gravity-sim.production" description="compile module gravity-sim; test classes" unless="skip.tests"/>
+  
+  <target name="clean.module.gravity-sim" description="cleanup module">
+    <delete dir="${gravity-sim.output.dir}"/>
+    <delete dir="${gravity-sim.testoutput.dir}"/>
+  </target>
+</project>
