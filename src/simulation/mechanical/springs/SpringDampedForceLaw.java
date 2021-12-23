@@ -60,7 +60,7 @@ public class SpringDampedForceLaw implements ForceLaw {
 
    private int collCount =0;
    protected void collision(PointMass g1, PointMass g2) {
-      // The reduction of the felocity aims to sap kinetic energy from the system, bit of an experiment.
+      // The reduction of the velocity aims to sap kinetic energy from the system, bit of an experiment.
 //      System.out.println("Collision: " + ++collCount);
       g1.velocity.scale(0.8);
       g2.velocity.scale(0.8);
